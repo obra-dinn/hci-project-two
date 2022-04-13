@@ -230,7 +230,7 @@ if (pageForm && pageForm.id == "cart") {
       <section class="misc">
         <h2 class="price"></h2>
         <input type="button" class="remove" value="Remove">
-        <input type="button" class="edit" value="Edit">
+        <input type="number" class="quantity" value="0">
       </section>
     `
 
@@ -263,10 +263,12 @@ if (pageForm && pageForm.id == "cart") {
     let titleElem = newProduct.querySelector(".title")
     let descElem = newProduct.querySelector(".description")
     let priceElem = newProduct.querySelector(".price")
+    let quantityElem = newProduct.querySelector(".quantity")
 
     titleElem.textContent = name
     descElem.textContent = productDetails.desc
     priceElem.textContent = `$${productDetails.price}`
+    quantityElem.value = cart[name]
 
     cartContainer.appendChild(newProduct)
     return true
