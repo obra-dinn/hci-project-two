@@ -130,6 +130,10 @@ main > section, #cart-items, #cart-summary, #shipping, #billing, .products {
   margin-top: 1em;
 }
 
+.cart-item .quantity {
+  width: 4rem;
+}
+
 .details {
   grid-row: span 2;
 }
@@ -143,14 +147,13 @@ main > section, #cart-items, #cart-summary, #shipping, #billing, .products {
   display: flex;
   flex-direction: row;
   text-align: right;
-  margin-top: auto
+  grid-gap: 1rem;
 }
 
 .cart-item .misc .price {
   margin-right: auto;
   font-weight: 600;
 }
-
 
 .cart-item .misc input[type="button"] {
   border: none;
@@ -159,7 +162,6 @@ main > section, #cart-items, #cart-summary, #shipping, #billing, .products {
 
 .remove {
   border-radius: 0;
-  border-right: 1px solid black !important;
 }
 
 .remove, .edit {

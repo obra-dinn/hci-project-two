@@ -213,7 +213,6 @@ if (pageMain && pageMain.id === "homescreen") {
 // For pages with form container
 var pageForm = document.forms[0]; // First form on page
 
-
 // === Cart ===
 if (pageForm && pageForm.id == "cart") {
   // =========================================
