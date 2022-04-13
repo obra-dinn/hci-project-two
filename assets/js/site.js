@@ -53,7 +53,6 @@ var cartProducts = {
 }
 
 var cart = loadCartFromStorage();
-console.log(cart);
 
 // ======================================
 // ===== LocalStorage Functionality =====
@@ -67,7 +66,6 @@ function loadCartFromStorage() {
 }
 
 function saveCartToStorage() {
-  console.log(cart)
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
@@ -132,8 +130,6 @@ function updateSummary() {
   let subtotListElem = summary.querySelector("#cost-subtotal.category").parentElement
   let feeListElem = summary.querySelector("#cost-fee.category").parentElement
   let taxListElem = summary.querySelector("#cost-tax.category").parentElement
-
-  console.log(totListElem)
 
   let totValueElem = totListElem.getElementsByClassName("value")[0]
   let subtotValueElem = subtotListElem.getElementsByClassName("value")[0]
