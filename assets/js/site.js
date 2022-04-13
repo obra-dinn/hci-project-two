@@ -278,21 +278,26 @@ if (pageForm && pageForm.id == "cart") {
     itemElement.remove();
   }
 
-  function pageSetProductQuantity(name, quantity=1) {
-    // TODO
-  }
-
-  // == Remove Button Functionality ==
   let cartItemElements = document.querySelectorAll(".cart-item");
 
   cartItemElements.forEach(item => {
+    // == Remove Button Functionality ==
     let removeButton = item.querySelector(".remove");
     let productName = item.querySelector(".title").textContent;
 
     removeButton.addEventListener("click", function(event) {
       pageRemoveProduct(item);
       cartRemoveProduct(productName);
+      updateSummary();
     });
+
+    // == Quantity selector functionality ==
+    let quantityElem = item.querySelector(".quantity");
+
+    quantityElem.addEventListener("change", function(event) {
+      cartSetProductQuantity(productName, event.target.value);
+      updateSummary();
+    })
   })
 
   updateSummary(); // Update summary display
