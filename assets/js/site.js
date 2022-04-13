@@ -78,9 +78,9 @@ function clearCart() {
 // ===== Cart Functionality =====
 // ==============================
 function cartAddProduct(name, quantity=1) {
-  if (isNaN(quantity) || !(name in cartProducts) || quantity <= 0) 
+  if (isNaN(quantity) || !(name in cartProducts) || quantity <= 0)
     return false;
-  
+
   if (!(name in cart)) { // Item not in cart
     cart[name] = quantity
   } else { // Item exists in cart
@@ -109,9 +109,9 @@ function cartRemoveProduct(name, quantity=1) {
 function cartSetProductQuantity(name, quantity=1) {
   if (isNaN(quantity) || !(name in cartProducts) || quantity <= 0)
     return false;
-  
+
   cart[name] = quantity;
-  
+
   saveCartToStorage();
   return true;
 }
@@ -205,11 +205,11 @@ if (pageMain && pageMain.id === "homescreen") {
   function pageAddProduct(name, quantity=1) {
     // TODO
   }
-  
+
   function pageRemoveProduct(name, quantity=1) {
     // TODO
   }
-  
+
   function pageSetProductQuantity(name, quantity=1) {
     // TODO
   }
@@ -300,7 +300,7 @@ if (pageForm && pageForm.id == "cart") {
 if (pageForm && pageForm.id == "checkout") { // Apply to checkout webpage
   // == Update Summary ==
   updateSummary()
-  
+
   // ===== Enforce Billing Address Validation =====
   function toggleBillingAddressValidation(validate) {
     let inputs = document.querySelectorAll("#address-b-form input")
