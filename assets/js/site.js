@@ -91,17 +91,12 @@ function cartAddProduct(name, quantity=1) {
   return true;
 }
 
-function cartRemoveProduct(name, quantity=1) {
-  if (isNaN(quantity) || !(name in cartProducts) || !(name in cart) || quantity <= 0) 
+function cartRemoveProduct(name) {
+  if (!(name in cart))
     return false;
 
-  let count = cart[name]
-  if (quantity >= count) { // Remove entirely
-    delete cart[name];
-  } else { // Update count
-    cart[name] -= quantity;
-  }
-  
+  delete cart[name];
+
   saveCartToStorage();
   return true;
 }
