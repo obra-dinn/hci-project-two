@@ -263,39 +263,35 @@ if (pageForm && pageForm.id == "cart") {
     let titleElem = newProduct.querySelector(".title")
     let descElem = newProduct.querySelector(".description")
     let priceElem = newProduct.querySelector(".price")
-    
-    console.log(name)
-    console.log(newProduct)
-    console.log(titleElem, descElem, priceElem)
-    
+
     titleElem.textContent = name
     descElem.textContent = productDetails.desc
     priceElem.textContent = `$${productDetails.price}`
-    
+
     cartContainer.appendChild(newProduct)
     return true
   }
-  
-  function pageRemoveProduct(name, quantity=1) {
-    // TODO
+
+  function pageRemoveProduct(itemElement) {
+    itemElement.remove();
   }
-  
+
   function pageSetProductQuantity(name, quantity=1) {
     // TODO
   }
 
   // == Remove Button Functionality ==
+  let cartItemElements = document.querySelectorAll(".cart-item");
 
-  // == Edit Button Functionality ==
+  cartItemElements.forEach(item => {
+    let removeButton = item.querySelector(".remove");
+    let productName = item.querySelector(".title").textContent;
 
-  // == Load Cart ==
-  for (const [title, count] of Object.entries(cart)) {
-    if (title in cartProducts) {
-      pageAddProduct(title, count)
-    } else {
-      console.log(`ERROR: "${title}" Not found in cartProducts`)
-    }
-  }
+    removeButton.addEventListener("click", function(event) {
+      pageRemoveProduct(item);
+      cartRemoveProduct(productName);
+    });
+  })
 
   updateSummary(); // Update summary display
 }
