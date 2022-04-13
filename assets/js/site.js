@@ -227,14 +227,14 @@ if (pageForm && pageForm.id == "cart") {
         <li class="title"></li>
         <li class="description"></li>
       </ul>
-      <li class="misc">
+      <section class="misc">
         <h2 class="price"></h2>
         <input type="button" class="remove" value="Remove">
         <input type="button" class="edit" value="Edit">
-      </li>
+      </section>
     `
 
-    let product = document.createElement("ul")
+    let product = document.createElement("li")
     product.className = "cart-item"
     product.innerHTML = templateHTML
 
@@ -244,8 +244,17 @@ if (pageForm && pageForm.id == "cart") {
   let cartContainer = document.getElementById("cart-items")
   let template = getProductTemplate() // Blank product element
 
+  // == Load Cart ==
+  for (const [title, count] of Object.entries(cart)) {
+    if (title in cartProducts) {
+      pageAddProduct(title, count)
+    } else {
+      console.log(`ERROR: "${title}" Not found in cartProducts`)
+    }
+  }
+
   function pageAddProduct(name, quantity=1) {
-    if (isNaN(quantity) || !(name in cartProducts) || quantity <= 0) 
+    if (isNaN(quantity) || !(name in cartProducts) || quantity <= 0)
       return false;
 
     let productDetails = cartProducts[name]
