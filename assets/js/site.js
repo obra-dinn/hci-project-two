@@ -53,6 +53,7 @@ var cartProducts = {
 }
 
 var cart = loadCartFromStorage();
+updateCartLink();
 
 // ======================================
 // ===== LocalStorage Functionality =====
@@ -87,6 +88,7 @@ function cartAddProduct(name, quantity=1) {
     cart[name] += quantity
   }
 
+  updateCartLink();
   saveCartToStorage();
   return true;
 }
@@ -97,6 +99,7 @@ function cartRemoveProduct(name) {
 
   delete cart[name];
 
+  updateCartLink();
   saveCartToStorage();
   return true;
 }
@@ -107,8 +110,31 @@ function cartSetProductQuantity(name, quantity=1) {
 
   cart[name] = quantity;
 
+  updateCartLink();
   saveCartToStorage();
   return true;
+}
+
+function getCartSize() {
+  let count = 0;
+
+  // Get an array of all the values in the cart with Object.values(cart)
+  // and count how many of each item
+  Object.values(cart).forEach(item => {
+    count += parseInt(item);
+  })
+
+  return count;
+}
+
+function updateCartLink() {
+  let links = document.querySelector("#pages").querySelectorAll("a");
+  let cartSize = getCartSize();
+
+  links.forEach(link => {
+    if (link.getAttribute("href") === "./cart/")
+      link.innerHTML = cartSize > 0 ? `Cart (${getCartSize()})` : "Cart";
+  })
 }
 
 // ==========================
@@ -294,7 +320,7 @@ if (pageForm && pageForm.id == "cart") {
     let quantityElem = item.querySelector(".quantity");
 
     quantityElem.addEventListener("change", function(event) {
-      cartSetProductQuantity(productName, event.target.value);
+      cartSetProductQuantity(productName, parseInt(event.target.value)); // parseInt() to avoid causing errors when displaying cart size
       updateSummary();
     })
   })
